@@ -1,0 +1,264 @@
+# GUÍA RÁPIDA: ENTORNO VIRTUAL DE PYTHON + REQUIREMENTS.TXT
+
+## 1. Entrar a la carpeta del proyecto
+
+En PowerShell:
+
+```powershell
+cd "C:\ruta\del\proyecto\MI_PROYECTO"
+```
+
+Comprobar ubicación:
+
+```powershell
+pwd
+```
+
+---
+
+## 2. Comprobar Python
+
+```powershell
+python --version
+```
+
+Ver versiones disponibles:
+
+```powershell
+py --list
+```
+
+---
+
+## 3. Crear el entorno virtual
+
+Ejemplo con Python 3.13:
+
+```powershell
+py -3.13 -m venv env
+```
+
+Esto creará la carpeta:
+
+```text
+MI_PROYECTO/
+├── env/
+├── requirements.txt
+└── main.py
+```
+
+---
+
+## 4. Activar el entorno
+
+En PowerShell:
+
+```powershell
+.\env\Scripts\Activate.ps1
+```
+
+Si funciona, aparecerá:
+
+```text
+(env) PS C:\ruta\del\proyecto\MI_PROYECTO>
+```
+
+### Si aparece un error de ejecución de scripts
+
+Ejecutar:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+Después:
+
+```powershell
+.\env\Scripts\Activate.ps1
+```
+
+### Alternativa usando CMD
+
+```cmd
+env\Scripts\activate.bat
+```
+
+---
+
+## 5. Comprobar que el entorno está activo
+
+```powershell
+python -c "import sys; print(sys.executable)"
+```
+
+Debe mostrar una ruta similar a:
+
+```text
+C:\ruta\del\proyecto\MI_PROYECTO\env\Scripts\python.exe
+```
+
+También:
+
+```powershell
+python --version
+```
+
+---
+
+## 6. Actualizar pip
+
+```powershell
+python -m pip install --upgrade pip
+```
+
+---
+
+## 7. Comprobar `requirements.txt`
+
+```powershell
+dir requirements.txt
+```
+
+Debe estar en la carpeta principal del proyecto.
+
+---
+
+## 8. Instalar las dependencias
+
+Con el entorno `(env)` activo:
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+---
+
+## 9. Comprobar paquetes instalados
+
+```powershell
+python -m pip list
+```
+
+Para comprobar un paquete específico:
+
+```powershell
+python -m pip show torch
+```
+
+---
+
+## 10. Si se necesita instalar PyTorch
+
+Ejemplo:
+
+```powershell
+python -m pip install torch torchvision torchaudio
+```
+
+> La instalación de PyTorch puede variar según la versión de Python y si se utiliza CPU o GPU.
+
+---
+
+## 11. Si aparece un error de rutas demasiado largas
+
+Puede ser necesario habilitar **Windows Long Paths**.
+
+Abrir PowerShell como administrador:
+
+```powershell
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabled /t REG_DWORD /d 1 /f
+```
+
+Reiniciar Windows.
+
+Comprobar:
+
+```powershell
+reg query "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabled
+```
+
+Debe aparecer:
+
+```text
+LongPathsEnabled    REG_DWORD    0x1
+```
+
+---
+
+## 12. Ejecutar el proyecto
+
+Con el entorno activo:
+
+```powershell
+python main.py
+```
+
+---
+
+## 13. Cuando vuelvas a trabajar otro día
+
+**No es necesario crear nuevamente `env`.**
+
+Solamente:
+
+```powershell
+cd "C:\ruta\del\proyecto\MI_PROYECTO"
+```
+
+```powershell
+.\env\Scripts\Activate.ps1
+```
+
+Y ejecutar:
+
+```powershell
+python main.py
+```
+
+---
+
+## 14. Desactivar el entorno
+
+Cuando termines:
+
+```powershell
+deactivate
+```
+
+---
+
+# COMANDOS ESENCIALES
+
+```powershell
+# Entrar al proyecto
+cd "C:\ruta\del\proyecto\MI_PROYECTO"
+
+# Ver Python
+python --version
+
+# Ver versiones disponibles
+py --list
+
+# Crear entorno
+py -3.13 -m venv env
+
+# Activar
+.\env\Scripts\Activate.ps1
+
+# Actualizar pip
+python -m pip install --upgrade pip
+
+# Instalar dependencias
+python -m pip install -r requirements.txt
+
+# Ver paquetes
+python -m pip list
+
+# Ejecutar
+python main.py
+
+# Desactivar
+deactivate
+```
+
+**Regla básica:** `env` se crea **una sola vez**. Después, cada vez que trabajes en el proyecto, simplemente **activas `env` y ejecutas tu programa**.
