@@ -1,0 +1,6 @@
+﻿ECR,MODELO_GANADOR
+APOYO,4-LightGBM
+JCR,2-MLPOrdinal
+MICRORATE,3-RegresionOrdinal
+MOODYS,4-LightGBM
+PCR,1-HistGB

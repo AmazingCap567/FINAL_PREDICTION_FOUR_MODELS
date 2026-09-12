@@ -1,0 +1,9 @@
+Tipo de entidad: FINANCIERA
+Observaciones en TRAIN usadas para la seleccion: 38 (7 entidades)
+Variables candidatas iniciales: 2076
+Variables finales seleccionadas como predictoras: 60
+  - De nivel/original: 17
+  - Derivadas (lag/tendencia/indicador missing): 43
+Variables objetivo (rating por ECR): 6
+
+Ver variables_entrenamiento.xlsx para el detalle variable por variable y variables_descripcion.xlsx para el diccionario de datos.
